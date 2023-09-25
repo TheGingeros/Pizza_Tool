@@ -48,4 +48,23 @@ class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
             self.report(
                 {'INFO'}, "No objects with the same material.")           
         return {'FINISHED'}
+    
+class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
+    """Assign active material to all selected objects"""
+    bl_idname = "object.pizza_tool_assign_material"
+    bl_label = ""
+
+    def execute(self,context):
+        active_material = context.active_object.active_material
+        all_objects = context.selectable_objects
+
+        for obj in all_objects:
+            if(len(obj.material_slots)<1):
+                #Create material slot and assign the active_material
+                pass
+            else:
+                for material in obj.material_slots:
+                    if(material.name == active_material.name):
+                        print("Material ", material name, "already in ", obj.name)
+        return {'FINISHED'}    
 

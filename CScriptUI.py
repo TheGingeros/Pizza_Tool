@@ -89,6 +89,38 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
             select_button = row.operator(
             "object.pizza_tool_select_material", text="Select Objects by Material", icon='COPYDOWN')
 
+class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_MaterialTool_AssignMaterialToObject_UI"
+    bl_label = "Assign Material to Selected Objects"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Pizza Tool" #Name of the category in 3d view
+    bl_parent_id = OBJECT_PT_MaterialTool_UI.bl_idname
+    bl_order = 3
+
+    def draw_header(self, context):
+        self.layout.label(text="", icon="SHADING_TEXTURE")
+
+    def draw(self,context):
+        layout = self.layout
+
+        selected_objects = bpy.context.selected_objects
+        if(len(selected_objects)<1):
+            layout.label(text="No objects selected")
+        else:
+            print(selected_objects)
+            object = bpy.context.active_object
+            row = layout.row()
+            row.label(text="Active Object: {}      Active Material to assign: {}".format(object.name, object.active_material.name))
+
+            assign_button = row.operator(
+                "object.pizza_tool_assign_material", text="Assign Button", icon='COPYDOWN'
+            )
+
+
+
+
+
 
 
 
