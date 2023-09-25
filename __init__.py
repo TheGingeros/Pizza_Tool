@@ -1,7 +1,7 @@
 bl_info ={
     "name": "Pizza Tool",
     "author": "Gingeros",
-    "description": "Useful multy tool for Blender",
+    "description": "Useful multi tool for Blender",
     "blender": (3, 6, 0),
     "version": (1, 0, 0),
     "location": "",
@@ -11,24 +11,18 @@ bl_info ={
 import bpy
 from .CScriptUI import *
 from .COperators import *
+import inspect
+
+UI_Classes = inspect.getmembers(CScriptUI, inspect.isclass)
+reversed = UI_Classes[::-1]
 
 def register():
-    bpy.utils.register_class(OBJECT_PT_ObjectTool_UI)
-    bpy.utils.register_class(OBJECT_PT_MaterialTool_UI)
-    bpy.utils.register_class(OBJECT_PT_MaterialTool_SelectByMaterial_UI)
-    bpy.utils.register_class(OBJECT_PT_CopyObjectLocation_UI)
-    bpy.utils.register_class(OBJECT_OT_pizza_tool_copy)
-    bpy.utils.register_class(OBJECT_OT_pizza_tool_paste)
-    bpy.utils.register_class(OBJECT_OT_pizza_tool_select_material)
+    for class_type in reversed:
+        bpy.utils.register_class(class_type[1])
 
 def unregister():
-    bpy.utils.unregister_class(OBJECT_PT_ObjectTool_UI)
-    bpy.utils.unregister_class(OBJECT_PT_MaterialTool_UI)
-    bpy.utils.unregister_class(OBJECT_PT_MaterialTool_SelectByMaterial_UI)
-    bpy.utils.unregister_class(OBJECT_PT_CopyObjectLocation_UI)
-    bpy.utils.unregister_class(OBJECT_OT_pizza_tool_copy)
-    bpy.utils.unregister_class(OBJECT_OT_pizza_tool_paste)
-    bpy.utils.unregister_class(OBJECT_OT_pizza_tool_select_material)
+    for class_type in reversed:
+        bpy.utils.unregister_class(class_type[1])
 
 if __name__ == "__main__":
     register()

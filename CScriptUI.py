@@ -69,6 +69,7 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     bl_region_type = "UI"
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_MaterialTool_UI.bl_idname
+    bl_order = 3
 
     def draw_header(self, context):
         self.layout.label(text="", icon="SHADING_TEXTURE")
