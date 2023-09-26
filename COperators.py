@@ -56,15 +56,27 @@ class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
 
     def execute(self,context):
         active_material = context.active_object.active_material
-        all_objects = context.selectable_objects
+        all_objects = context.selected_objects
+        active_object = context.active_object.name
 
         for obj in all_objects:
+            #Check if object has material slot, if not, we create one
             if(len(obj.material_slots)<1):
                 #Create material slot and assign the active_material
-                pass
+                obj.select_set(True)
+                obj.data.materials.append(active_material)
             else:
+                materialAlreadyUsed = False
                 for material in obj.material_slots:
+                    #Check if the material isnt already assigned, if yes, we skip to next object
                     if(material.name == active_material.name):
-                        print("Material ", material name, "already in ", obj.name)
+                        materialAlreadyUsed = True
+                        break
+                if(materialAlreadyUsed == False):
+                    #The object doesnt have the material, so we assign it
+                    obj.select_set(True)
+                    obj.data.materials.append(active_material)
+                    materialAlreadyUsed = False
+
         return {'FINISHED'}    
 

@@ -108,14 +108,17 @@ class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
         if(len(selected_objects)<1):
             layout.label(text="No objects selected")
         else:
-            print(selected_objects)
+            #print(selected_objects)
             object = bpy.context.active_object
             row = layout.row()
-            row.label(text="Active Object: {}      Active Material to assign: {}".format(object.name, object.active_material.name))
-
-            assign_button = row.operator(
+            try:
+                row.label(text="Active Object: {}      Active Material to assign: {}".format(object.name, object.active_material.name))
+                assign_button = row.operator(
                 "object.pizza_tool_assign_material", text="Assign Button", icon='COPYDOWN'
             )
+
+            except:
+                row.label(text="Active Object: {}      Active Material to assign: No Active Material".format(object.name))
 
 
 
