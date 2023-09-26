@@ -8,10 +8,11 @@ Blender Addon. Package with multiple tools for easier workflow in blender
 4. Enjoy!
 
 **Current Feature:**
-  1. Object Tool:
+  1. Object Tool:  
     Copy Object's location feature -> Lets you copy object's location and pass it to another object.
-  2. Material Tool:
-    Select by material tool -> Lets you select objects by selected material
+
+  3. Material Tool:  
+    Select by material tool -> Lets you select objects by selected material  
     Assign material tool -> Lets you assign selected material to all selected objects
 
 Any bugs or ideas forward to the creator on discord -> @gingeros
