@@ -43,9 +43,9 @@ class OBJECT_PT_CopyObjectLocation_UI(bpy.types.Panel):
             row.label(text="{}: {:.6f}, {:.6f}, {:.6f}".format(object.name, loc[0],loc[1],loc[2]))
 
             copy_button = row.operator(
-            "object.pizza_tool_copy", text="Copy Location", icon='COPYDOWN')
+            "object.pizza_tool_copy", text="", icon='COPYDOWN')
             paste_button = row.operator(
-            "object.pizza_tool_paste",text="Paste Location", icon='COPYDOWN')
+            "object.pizza_tool_paste",text="", icon='COPYDOWN')
 
 class OBJECT_PT_CopyObjectRotation_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_CopyObjectRotation_UI"
