@@ -90,6 +90,7 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
                 "object.pizza_tool_select_material", text="", icon='COPYDOWN')
             except:
                 row.label(text="{}      Active Material: None".format(object.name))
+            #
 
 
 
