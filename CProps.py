@@ -5,5 +5,10 @@ bpy.types.Scene.saved_location = bpy.props.FloatVectorProperty(
     description="Saved location of the selected object",
     size=3,  # 3D vector (X, Y, Z)
 )
+bpy.types.Scene.saved_rotation = bpy.props.FloatVectorProperty(
+    name="Pizza_Tool_Saved_Rotation",
+    description="Saved rotation of the selected object",
+    size=3,  # 3D vector (X, Y, Z)
+)
 
 #bpy.types.Scene.selected_object_materials = bpy.props.EnumProperty()

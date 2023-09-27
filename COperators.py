@@ -26,6 +26,30 @@ class OBJECT_OT_pizza_tool_paste(bpy.types.Operator):
                 {'INFO'}, "Location was pasted to the selected object.")
         return {'FINISHED'}
 
+class OBJECT_OT_pizza_tool_copyrot(bpy.types.Operator):
+    """Copy the rotation of an object to the memory"""
+    bl_idname = "object.pizza_tool_copyrot"
+    bl_label = ""
+    def execute(self, context):
+        print("Execute Copying")
+        rotation = bpy.context.selected_objects[0].rotation_euler
+        context.scene.saved_rotation = rotation
+        self.report(
+            {'INFO'}, "Rotation copied: {:.6f}, {:.6f}, {:.6f}".format(rotation[0],rotation[1],rotation[2]))
+        return {'FINISHED'}
+
+class OBJECT_OT_pizza_tool_pasterot(bpy.types.Operator):
+    """Paste the rotation from memory to selected object """
+    bl_idname = "object.pizza_tool_pasterot"
+    bl_label = ""
+    def execute(self, context):
+        if (hasattr(bpy.context.scene, 'saved_rotation')):
+            print("Rotation found, passing it to the object")
+            bpy.context.selected_objects[0].rotation_euler = bpy.context.scene.saved_rotation
+            self.report(
+                {'INFO'}, "Rotation was pasted to the selected object.")
+        return {'FINISHED'}
+
 class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
     """Select all objects with the same material"""
     bl_idname = "object.pizza_tool_select_material"
