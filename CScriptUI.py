@@ -146,13 +146,13 @@ class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
             object = bpy.context.active_object
             row = layout.row()
             try:
-                row.label(text="Active Object: {}      Active Material to assign: {}".format(object.name, object.active_material.name))
+                row.label(text="Active Object: {}      Active Material: {}".format(object.name, object.active_material.name))
                 assign_button = row.operator(
                 "object.pizza_tool_assign_material", text="Assign Button", icon='COPYDOWN'
             )
 
             except:
-                row.label(text="Active Object: {}      Active Material to assign: No Active Material".format(object.name))
+                row.label(text="Active Object: {}      Active Material: No Active Material".format(object.name))
 
 
 
