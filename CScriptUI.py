@@ -116,7 +116,7 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
             try:
                 row.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
                 select_button = row.operator(
-                "object.pizza_tool_select_material", text="Select Objects by Material", icon='COPYDOWN')
+                "object.pizza_tool_select_material", text="", icon='COPYDOWN')
             except:
                 row.label(text="{}      Active Material: None".format(object.name))
             #
@@ -148,7 +148,7 @@ class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
             try:
                 row.label(text="Active Object: {}      Active Material: {}".format(object.name, object.active_material.name))
                 assign_button = row.operator(
-                "object.pizza_tool_assign_material", text="Assign Button", icon='COPYDOWN'
+                "object.pizza_tool_assign_material", text="", icon='COPYDOWN'
             )
 
             except:
