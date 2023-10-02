@@ -49,6 +49,30 @@ class OBJECT_OT_pizza_tool_pasterot(bpy.types.Operator):
             self.report(
                 {'INFO'}, "Rotation was pasted to the selected object.")
         return {'FINISHED'}
+    
+class OBJECT_OT_pizza_tool_copyscale(bpy.types.Operator):
+    """Copy the scale of an object to the memory"""
+    bl_idname = "object.pizza_tool_copyscale"
+    bl_label = ""
+    def execute(self, context):
+        print("Execute Copying")
+        scale = bpy.context.selected_objects[0].scale
+        context.scene.saved_scale = scale
+        self.report(
+            {'INFO'}, "Scale copied: {:.6f}, {:.6f}, {:.6f}".format(scale[0],scale[1],scale[2]))
+        return {'FINISHED'}
+
+class OBJECT_OT_pizza_tool_pastescale(bpy.types.Operator):
+    """Paste the scale from memory to selected object """
+    bl_idname = "object.pizza_tool_pastescale"
+    bl_label = ""
+    def execute(self, context):
+        if (hasattr(bpy.context.scene, 'saved_scale')):
+            print("Scale found, passing it to the object")
+            bpy.context.selected_objects[0].scale = bpy.context.scene.saved_scale
+            self.report(
+                {'INFO'}, "Scale was pasted to the selected object.")
+        return {'FINISHED'}
 
 class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
     """Select all objects with the same material"""
