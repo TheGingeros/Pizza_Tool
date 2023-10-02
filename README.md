@@ -9,7 +9,7 @@ Blender Addon. Package with multiple tools for easier workflow in blender
 
 **Current Feature:**
   1. Object Tool:  
-    Copy Object's location feature -> Lets you copy object's location and pass it to another object.
+    Copy Object's location feature -> Lets you copy object's location and pass it to another object.  
     Copy Object's rotation feature  
     Copy Object's scale feature  
 
