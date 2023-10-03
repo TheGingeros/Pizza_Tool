@@ -142,13 +142,13 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
         if(len(selected_objects)==1):
             object = selected_objects[0]
             #box.operator("object.select_all").action = 'TOGGLE'
-            try:
+            if object.active_material == None:
+                print("No active material")
+                box.label(text="{}      Active Material: None".format(object.name))
+            else:
                 box.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
                 select_button = box.operator(
                 "object.pizza_tool_select_material", text="Select Objects By Material", icon='COPYDOWN')
-            except:
-                box.label(text="{}      Active Material: None".format(object.name))
-            #
 
 
 
