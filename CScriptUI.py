@@ -134,20 +134,20 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
 
     def draw(self,context):
         layout = self.layout
-
+        box = layout.box()
         #Showing of currently selected object and its active material
         selected_objects = bpy.context.selected_objects
-        if(len(selected_objects)>1): layout.label(text="Select only one object!")
-        if(len(selected_objects)==0): layout.label(text="No objects selected")
+        if(len(selected_objects)>1): box.label(text="Select only one object!")
+        if(len(selected_objects)==0): box.label(text="No objects selected")
         if(len(selected_objects)==1):
             object = selected_objects[0]
-            row = layout.row()
+            #box.operator("object.select_all").action = 'TOGGLE'
             try:
-                row.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
-                select_button = row.operator(
-                "object.pizza_tool_select_material", text="", icon='COPYDOWN')
+                box.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
+                select_button = box.operator(
+                "object.pizza_tool_select_material", text="Select Objects By Material", icon='COPYDOWN')
             except:
-                row.label(text="{}      Active Material: None".format(object.name))
+                box.label(text="{}      Active Material: None".format(object.name))
             #
 
 
