@@ -104,8 +104,7 @@ class OBJECT_PT_CopyObjectScale_UI(bpy.types.Panel):
             "object.pizza_tool_copyscale", text="", icon='COPYDOWN')
             paste_button = row.operator(
             "object.pizza_tool_pastescale",text="", icon='COPYDOWN')
-            
-            
+                    
 class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_UI"
     bl_label = "Material Tool" #Name when tab is open
@@ -119,6 +118,20 @@ class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
 
     def draw(self,context):
         layout = self.layout
+
+class OBJECT_UL_Materials_List(bpy.types.UIList):
+    """List for displaying materials"""
+    bl_idname="OBJECT_UL_Materials_List"
+
+    def draw_item(
+        self, context, layout, data, item, icon, active_data, active_propname, index
+    ):
+        if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            layout.label(text=item.name, icon = 'OBJECT_DATAMODE')
+        elif self.layout_type in {'GRID'}:
+            layout.alignment = 'CENTER'
+            layout.label(text="", icon = 'OBJECT_DATAMODE')
+
 
 class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_SelectByMaterial_UI"
@@ -149,8 +162,14 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
                 box.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
                 select_button = box.operator(
                 "object.pizza_tool_select_material", text="Select Objects By Material", icon='COPYDOWN')
-
-
+                #row = layout.row()
+                #row.template_list(
+                #"OBJECT_UL_Materials_List", 
+                #"Materials_List", 
+                #bpy.types.Scene, 
+                #"select_material_list",
+                #bpy.types.Scene,
+                #"select_material_list_index")
 
 class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_AssignMaterialToObject_UI"
