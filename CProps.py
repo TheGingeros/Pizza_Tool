@@ -1,8 +1,7 @@
 import bpy
-
+#Functions for the allmaterials EnumProperty
 def mat_update(self, context):
     pass
-
 def getsets(self, context):
     sets = []
     mats = bpy.data.materials
