@@ -184,6 +184,22 @@ class OBJECT_PT_Utility_Tool_UI(bpy.types.Panel):
     def draw(self,context):
         layout = self.layout
 
+class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_UtilityTool_CleanUp_UI"
+    bl_label = "Clean-Up Tool"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Pizza Tool"
+    bl_parent_id = OBJECT_PT_Utility_Tool_UI.bl_idname
+    bl_order = 0
+    bl_options = {"DEFAULT_CLOSED"}
+
+    def draw_header(self, context):
+        self.layout.label(text="", icon="BRUSH_DATA")
+    
+    def draw(self,context):
+        layout = self.layout
+
 
 
 
