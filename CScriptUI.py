@@ -104,8 +104,7 @@ class OBJECT_PT_CopyObjectScale_UI(bpy.types.Panel):
             "object.pizza_tool_copyscale", text="", icon='COPYDOWN')
             paste_button = row.operator(
             "object.pizza_tool_pastescale",text="", icon='COPYDOWN')
-            
-            
+                    
 class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_UI"
     bl_label = "Material Tool" #Name when tab is open
@@ -119,6 +118,24 @@ class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
 
     def draw(self,context):
         layout = self.layout
+
+class OBJECT_UL_Materials_List(bpy.types.UIList):
+    """List for displaying materials"""
+    #bl_idname="OBJECT_UL_Materials_List"
+
+    def draw_item(
+        self, context, layout, data, item, icon, active_data, active_propname, index
+    ):
+        all_materials = data
+        material = item
+
+        if self.layout_type in {'DEFAULT', 'COMPACT'}:
+            layout.prop(material,"material",text="",emboss=False,icon_value=icon)
+            #layout.label(text=item.name, icon = 'OBJECT_DATAMODE')
+        elif self.layout_type in {'GRID'}:
+            layout.alignment = 'CENTER'
+            layout.label(text="", icon_value=icon)
+
 
 class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_SelectByMaterial_UI"
@@ -135,21 +152,12 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     def draw(self,context):
         layout = self.layout
 
-        #Showing of currently selected object and its active material
-        selected_objects = bpy.context.selected_objects
-        if(len(selected_objects)>1): layout.label(text="Select only one object!")
-        if(len(selected_objects)==0): layout.label(text="No objects selected")
-        if(len(selected_objects)==1):
-            object = selected_objects[0]
-            row = layout.row()
-            try:
-                row.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
-                select_button = row.operator(
-                "object.pizza_tool_select_material", text="", icon='COPYDOWN')
-            except:
-                row.label(text="{}      Active Material: None".format(object.name))
-            #
-
+        #Drawing Materials List
+        row = layout.row()
+        row.prop(context.scene, "allmaterials", text="Available Materials:")
+        select_button = row.operator(
+        "object.pizza_tool_select_material", text="", icon='COPYDOWN')
+        print(context.scene.allmaterials)
 
 
 class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):

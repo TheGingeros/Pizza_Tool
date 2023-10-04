@@ -3,7 +3,7 @@ bl_info ={
     "author": "Gingeros",
     "description": "Useful multi tool for Blender",
     "blender": (3, 6, 0),
-    "version": (1, 0, 0),
+    "version": (1, 0, 1),
     "location": "",
     "warning": "",
     "category": "Tool"

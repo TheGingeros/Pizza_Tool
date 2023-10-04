@@ -80,7 +80,7 @@ class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
     bl_label = ""
 
     def execute(self, context):
-        active_material_name = context.active_object.active_material.name
+        active_material_name = context.scene.allmaterials
         all_objects = context.selectable_objects
         selected_object_count = 0
         for object in all_objects:
@@ -89,12 +89,12 @@ class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
                 selected_object_count +=1
             else:
                 pass
-        if(selected_object_count > 1):
+        if(selected_object_count >= 1):
             self.report(
                 {'INFO'}, "Succesfully selected all objects by material: {}".format(active_material_name))
         else:
             self.report(
-                {'INFO'}, "No objects with the same material.")           
+                {'INFO'}, "No objects found with the selected material.")           
         return {'FINISHED'}
     
 class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
