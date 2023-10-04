@@ -157,8 +157,7 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
         row.prop(context.scene, "allmaterials", text="Available Materials:")
         select_button = row.operator(
         "object.pizza_tool_select_material", text="", icon='COPYDOWN')
-        print(context.scene.allmaterials)
-
+        #print(context.scene.allmaterials)
 
 class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_AssignMaterialToObject_UI"
