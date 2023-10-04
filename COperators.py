@@ -98,33 +98,28 @@ class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
         return {'FINISHED'}
     
 class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
-    """Assign active material to all selected objects"""
+    """Assign Selected Material to All Selected Objects"""
     bl_idname = "object.pizza_tool_assign_material"
     bl_label = ""
 
     def execute(self,context):
-        active_material = context.active_object.active_material
+        selected_material = context.scene.assign_material_allmaterials
         all_objects = context.selected_objects
-        active_object = context.active_object.name
 
         for obj in all_objects:
             #Check if object has material slot, if not, we create one
             if(len(obj.material_slots)<1):
                 #Create material slot and assign the active_material
                 obj.select_set(True)
-                obj.data.materials.append(active_material)
+                mat_index = bpy.data.materials.find(selected_material)
+                obj.data.materials.append(bpy.data.materials[mat_index])
             else:
-                materialAlreadyUsed = False
-                for material in obj.material_slots:
-                    #Check if the material isnt already assigned, if yes, we skip to next object
-                    if(material.name == active_material.name):
-                        materialAlreadyUsed = True
-                        break
-                if(materialAlreadyUsed == False):
-                    #The object doesnt have the material, so we assign it
+                #Check if the selected material isnt already in the object's material slots. If not, we add it
+                if selected_material not in obj.material_slots:
                     obj.select_set(True)
-                    obj.data.materials.append(active_material)
-                    materialAlreadyUsed = False
-
+                    mat_index = bpy.data.materials.find(selected_material)
+                    obj.data.materials.append(bpy.data.materials[mat_index])
+        self.report(
+        {'INFO'}, "Succesfully added Material to All Selected Objects.")
         return {'FINISHED'}    
 
