@@ -1,13 +1,17 @@
 import bpy
 
-bpy.types.Scene.select_material_list = bpy.props.CollectionProperty(
-        type=bpy.types.PropertyGroup,
-        name="Pizza_Tool_Select_Material_List",
-        description="List that stores active materials in scene",
-)
-bpy.types.Scene.select_material_list_index = bpy.props.IntProperty(
-    name = "Index for material_list",
-    default = 0)
+def mat_update(self, context):
+    pass
+
+def getsets(self, context):
+    sets = []
+    mats = bpy.data.materials
+
+    for mat in mats:
+        sets.append((mat.name, mat.name, mat.name))
+    if not sets:
+        sets = [('None', 'None', 'None')]
+    return sets
 
 bpy.types.Scene.saved_location = bpy.props.FloatVectorProperty(
     name="Pizza_Tool_Saved_Location",
@@ -24,5 +28,5 @@ bpy.types.Scene.saved_scale = bpy.props.FloatVectorProperty(
     description="Saved scale of the selected object",
     size=3,  # 3D vector (X, Y, Z)
 )
-
+bpy.types.Scene.allmaterials = bpy.props.EnumProperty(items=getsets, update=mat_update, name="All Available Materials")
 #bpy.types.Scene.selected_object_materials = bpy.props.EnumProperty()

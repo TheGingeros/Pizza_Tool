@@ -121,16 +121,20 @@ class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
 
 class OBJECT_UL_Materials_List(bpy.types.UIList):
     """List for displaying materials"""
-    bl_idname="OBJECT_UL_Materials_List"
+    #bl_idname="OBJECT_UL_Materials_List"
 
     def draw_item(
         self, context, layout, data, item, icon, active_data, active_propname, index
     ):
+        all_materials = data
+        material = item
+
         if self.layout_type in {'DEFAULT', 'COMPACT'}:
-            layout.label(text=item.name, icon = 'OBJECT_DATAMODE')
+            layout.prop(material,"material",text="",emboss=False,icon_value=icon)
+            #layout.label(text=item.name, icon = 'OBJECT_DATAMODE')
         elif self.layout_type in {'GRID'}:
             layout.alignment = 'CENTER'
-            layout.label(text="", icon = 'OBJECT_DATAMODE')
+            layout.label(text="", icon_value=icon)
 
 
 class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
@@ -147,29 +151,14 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
 
     def draw(self,context):
         layout = self.layout
-        box = layout.box()
-        #Showing of currently selected object and its active material
-        selected_objects = bpy.context.selected_objects
-        if(len(selected_objects)>1): box.label(text="Select only one object!")
-        if(len(selected_objects)==0): box.label(text="No objects selected")
-        if(len(selected_objects)==1):
-            object = selected_objects[0]
-            #box.operator("object.select_all").action = 'TOGGLE'
-            if object.active_material == None:
-                print("No active material")
-                box.label(text="{}      Active Material: None".format(object.name))
-            else:
-                box.label(text="{}      Active Material: {}".format(object.name, object.active_material.name))
-                select_button = box.operator(
-                "object.pizza_tool_select_material", text="Select Objects By Material", icon='COPYDOWN')
-                #row = layout.row()
-                #row.template_list(
-                #"OBJECT_UL_Materials_List", 
-                #"Materials_List", 
-                #bpy.types.Scene, 
-                #"select_material_list",
-                #bpy.types.Scene,
-                #"select_material_list_index")
+
+        #Drawing Materials List
+        row = layout.row()
+        row.prop(context.scene, "allmaterials", text="Available Materials:")
+        select_button = row.operator(
+        "object.pizza_tool_select_material", text="", icon='COPYDOWN')
+        print(context.scene.allmaterials)
+
 
 class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_AssignMaterialToObject_UI"
