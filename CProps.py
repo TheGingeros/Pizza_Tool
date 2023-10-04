@@ -29,4 +29,5 @@ bpy.types.Scene.saved_scale = bpy.props.FloatVectorProperty(
     size=3,  # 3D vector (X, Y, Z)
 )
 bpy.types.Scene.allmaterials = bpy.props.EnumProperty(items=getsets, update=mat_update, name="All Available Materials")
+bpy.types.Scene.assign_material_allmaterials = bpy.props.EnumProperty(items=getsets, update=mat_update, name="All Available Materials")
 #bpy.types.Scene.selected_object_materials = bpy.props.EnumProperty()
