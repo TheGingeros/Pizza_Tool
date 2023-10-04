@@ -9,6 +9,7 @@ class OBJECT_PT_ObjectTool_UI(bpy.types.Panel):
     bl_region_type = "UI"
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_order = 0
+    bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
         self.layout.label(text="", icon="MODIFIER_DATA")
@@ -26,6 +27,7 @@ class OBJECT_PT_CopyObjectLocation_UI(bpy.types.Panel):
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_ObjectTool_UI.bl_idname
     bl_order = 0
+    bl_options = {"DEFAULT_CLOSED"}
     
     def draw_header(self, context):
         self.layout.label(text="", icon="OBJECT_ORIGIN")
@@ -55,6 +57,7 @@ class OBJECT_PT_CopyObjectRotation_UI(bpy.types.Panel):
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_ObjectTool_UI.bl_idname
     bl_order = 1
+    bl_options = {"DEFAULT_CLOSED"}
     
     def draw_header(self, context):
         self.layout.label(text="", icon="OBJECT_ORIGIN")
@@ -84,6 +87,7 @@ class OBJECT_PT_CopyObjectScale_UI(bpy.types.Panel):
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_ObjectTool_UI.bl_idname
     bl_order = 2
+    bl_options = {"DEFAULT_CLOSED"}
     
     def draw_header(self, context):
         self.layout.label(text="", icon="OBJECT_ORIGIN")
@@ -112,30 +116,13 @@ class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
     bl_region_type = "UI"
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_order = 0
+    bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
         self.layout.label(text="", icon="IMAGE")
 
     def draw(self,context):
         layout = self.layout
-
-class OBJECT_UL_Materials_List(bpy.types.UIList):
-    """List for displaying materials"""
-    #bl_idname="OBJECT_UL_Materials_List"
-
-    def draw_item(
-        self, context, layout, data, item, icon, active_data, active_propname, index
-    ):
-        all_materials = data
-        material = item
-
-        if self.layout_type in {'DEFAULT', 'COMPACT'}:
-            layout.prop(material,"material",text="",emboss=False,icon_value=icon)
-            #layout.label(text=item.name, icon = 'OBJECT_DATAMODE')
-        elif self.layout_type in {'GRID'}:
-            layout.alignment = 'CENTER'
-            layout.label(text="", icon_value=icon)
-
 
 class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_MaterialTool_SelectByMaterial_UI"
@@ -145,6 +132,7 @@ class OBJECT_PT_MaterialTool_SelectByMaterial_UI(bpy.types.Panel):
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_MaterialTool_UI.bl_idname
     bl_order = 3
+    bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
         self.layout.label(text="", icon="SHADING_TEXTURE")
@@ -167,6 +155,7 @@ class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
     bl_category = "Pizza Tool" #Name of the category in 3d view
     bl_parent_id = OBJECT_PT_MaterialTool_UI.bl_idname
     bl_order = 3
+    bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
         self.layout.label(text="", icon="SHADING_TEXTURE")
