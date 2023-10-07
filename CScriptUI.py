@@ -8,7 +8,6 @@ class OBJECT_PT_ObjectTool_UI(bpy.types.Panel):
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = "Pizza Tool" #Name of the category in 3d view
-    bl_order = 0
     bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
@@ -115,7 +114,6 @@ class OBJECT_PT_MaterialTool_UI(bpy.types.Panel):
     bl_space_type = "VIEW_3D"
     bl_region_type = "UI"
     bl_category = "Pizza Tool" #Name of the category in 3d view
-    bl_order = 0
     bl_options = {"DEFAULT_CLOSED"}
 
     def draw_header(self, context):
@@ -172,6 +170,46 @@ class OBJECT_PT_MaterialTool_AssignMaterialToObject_UI(bpy.types.Panel):
             assign_button = row.operator(
                 "object.pizza_tool_assign_material", text="", icon='COPYDOWN'
             )
+
+class OBJECT_PT_Utility_Tool_UI(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_Utility_Tool_UI"
+    bl_label = "Utility Tool"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Pizza Tool"
+    bl_options = {"DEFAULT_CLOSED"}
+
+    def draw_header(self, context):
+        self.layout.label(text="", icon="PREFERENCES")
+    def draw(self,context):
+        layout = self.layout
+
+class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
+    bl_idname = "OBJECT_PT_UtilityTool_CleanUp_UI"
+    bl_label = "Clean-Up Tool"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Pizza Tool"
+    bl_parent_id = OBJECT_PT_Utility_Tool_UI.bl_idname
+    bl_order = 0
+    bl_options = {"DEFAULT_CLOSED"}
+
+    def draw_header(self, context):
+        self.layout.label(text="", icon="BRUSH_DATA")
+    
+    def draw(self,context):
+        layout = self.layout
+
+        #Check how many objects are selected
+        selected_objects = context.selected_objects
+        if len(selected_objects) < 1:
+            layout.label(text="No Object Selected.")
+        else:
+            box = layout.box()
+            cleanUp_button = box.operator(
+                "object.pizza_tool_clean_up_slots", text="Clean Up Unused Slots", icon='TRASH'
+            )
+
 
 
 
