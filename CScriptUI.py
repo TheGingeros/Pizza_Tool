@@ -200,6 +200,17 @@ class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
     def draw(self,context):
         layout = self.layout
 
+        #Check how many objects are selected
+        selected_objects = context.selected_objects
+        if len(selected_objects) < 1:
+            layout.label(text="No Object Selected.")
+        else:
+            box = layout.box()
+            cleanUp_button = box.operator(
+                "object.pizza_tool_clean_up_slots", text="Clean Up Unused Slots", icon='COPYDOWN'
+            )
+
+
 
 
 
