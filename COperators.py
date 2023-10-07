@@ -123,3 +123,15 @@ class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
         {'INFO'}, "Succesfully added Material to All Selected Objects.")
         return {'FINISHED'}    
 
+class OBJECT_OT_pizza_tool_clean_up_slots(bpy.types.Operator):
+    """Clean Up Material Slots for Selected Objects"""
+    bl_idname = "object.pizza_tool_clean_up_slots"
+    bl_label = ""
+    def execute(self, context):
+        selected_objects = context.selected_objects
+        for object in selected_objects:
+            object.select_set(True)
+            bpy.ops.object.material_slot_remove_unused()
+        self.report(
+            {'INFO'}, "All unused material slots were removed.")
+        return {'FINISHED'}
