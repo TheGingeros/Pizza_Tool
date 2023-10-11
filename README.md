@@ -13,8 +13,12 @@ Blender Addon. Package with multiple tools for easier workflow in blender
     Copy Object's rotation feature  
     Copy Object's scale feature  
 
-  3. Material Tool:  
+  2. Material Tool:  
     Select by material tool -> Lets you select objects by selected material  
     Assign material tool -> Lets you assign selected material to all selected objects
+
+  3. Utility Tool:
+     Clean Up Tool -> Lets you clean up material slots from selected objects
+     
 
 Any bugs or ideas forward to the creator on discord -> @gingeros
