@@ -21,4 +21,4 @@ Blender Addon. Package with multiple tools for easier workflow in blender
      Clean Up Tool -> Lets you clean up material slots from selected objects
      
 
-Any bugs or ideas forward to the creator on discord -> @gingeros
+Any bugs or ideas forward to the creator on discord -> @gingeros or open issues
