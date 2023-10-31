@@ -132,9 +132,24 @@ class OBJECT_OT_pizza_tool_clean_up_slots(bpy.types.Operator):
     bl_label = ""
     def execute(self, context):
         selected_objects = context.selected_objects
+        if(len(selected_objects) < 1):
+            self.report(
+                {'ERROR'}, "No object was selected. Try selecting one!")
+            return {'FINISHED'}   
         for object in selected_objects:
             object.select_set(True)
             bpy.ops.object.material_slot_remove_unused()
         self.report(
             {'INFO'}, "All unused material slots were removed.")
+        return {'FINISHED'}
+    
+class OBJECT_OT_pizza_tool_clean_up_slots_scene(bpy.types.Operator):
+    """Clean Up Material Slots in the Scene"""
+    bl_idname = "object.pizza_tool_clean_up_slots_scene"
+    bl_label = ""
+    def execute(self, context):
+        bpy.ops.outliner.orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=False)
+        self.report(
+            {'INFO'}, "All unused material slots in the scene were removed.")
+
         return {'FINISHED'}
