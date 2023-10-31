@@ -10,7 +10,6 @@ bl_info ={
 }
 import bpy
 from .CScriptUI import *
-from .COperators import *
 import inspect
 
 UI_Classes = inspect.getmembers(CScriptUI, inspect.isclass)
