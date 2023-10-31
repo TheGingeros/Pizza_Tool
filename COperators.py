@@ -138,3 +138,14 @@ class OBJECT_OT_pizza_tool_clean_up_slots(bpy.types.Operator):
         self.report(
             {'INFO'}, "All unused material slots were removed.")
         return {'FINISHED'}
+    
+class OBJECT_OT_pizza_tool_clean_up_slots_scene(bpy.types.Operator):
+    """Clean Up Material Slots for Selected Objects"""
+    bl_idname = "object.pizza_tool_clean_up_slots_scene"
+    bl_label = ""
+    def execute(self, context):
+        bpy.ops.outliner.orphans_purge(do_local_ids=True, do_linked_ids=True, do_recursive=False)
+        self.report(
+            {'INFO'}, "All unused material slots in the scene were removed.")
+
+        return {'FINISHED'}
