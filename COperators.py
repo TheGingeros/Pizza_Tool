@@ -144,7 +144,7 @@ class OBJECT_OT_pizza_tool_clean_up_slots(bpy.types.Operator):
         return {'FINISHED'}
     
 class OBJECT_OT_pizza_tool_clean_up_slots_scene(bpy.types.Operator):
-    """Clean Up Material Slots for Selected Objects"""
+    """Clean Up Material Slots in the Scene"""
     bl_idname = "object.pizza_tool_clean_up_slots_scene"
     bl_label = ""
     def execute(self, context):
