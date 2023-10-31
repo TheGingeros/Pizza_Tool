@@ -132,6 +132,10 @@ class OBJECT_OT_pizza_tool_clean_up_slots(bpy.types.Operator):
     bl_label = ""
     def execute(self, context):
         selected_objects = context.selected_objects
+        if(len(selected_objects) < 1):
+            self.report(
+                {'ERROR'}, "No object was selected. Try selecting one!")
+            return {'FINISHED'}   
         for object in selected_objects:
             object.select_set(True)
             bpy.ops.object.material_slot_remove_unused()
