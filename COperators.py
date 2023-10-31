@@ -22,6 +22,9 @@ class OBJECT_OT_pizza_tool_paste(bpy.types.Operator):
             bpy.context.selected_objects[0].location = bpy.context.scene.saved_location
             self.report(
                 {'INFO'}, "Location was pasted to the selected object.")
+        else:
+            self.report(
+                {'ERROR'}, "No location to be pasted saved in memory. Try copying the location first.")
         return {'FINISHED'}
 
 class OBJECT_OT_pizza_tool_copyrot(bpy.types.Operator):
@@ -44,6 +47,9 @@ class OBJECT_OT_pizza_tool_pasterot(bpy.types.Operator):
             bpy.context.selected_objects[0].rotation_euler = bpy.context.scene.saved_rotation
             self.report(
                 {'INFO'}, "Rotation was pasted to the selected object.")
+        else:
+            self.report(
+                {'ERROR'}, "No rotation to be pasted saved in memory. Try copying the rotation first.")
         return {'FINISHED'}
     
 class OBJECT_OT_pizza_tool_copyscale(bpy.types.Operator):
@@ -66,6 +72,9 @@ class OBJECT_OT_pizza_tool_pastescale(bpy.types.Operator):
             bpy.context.selected_objects[0].scale = bpy.context.scene.saved_scale
             self.report(
                 {'INFO'}, "Scale was pasted to the selected object.")
+        else:
+            self.report(
+                {'ERROR'}, "No sacle to be pasted saved in memory. Try copying the scale first.")
         return {'FINISHED'}
 
 class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
@@ -88,7 +97,7 @@ class OBJECT_OT_pizza_tool_select_material(bpy.types.Operator):
                 {'INFO'}, "Succesfully selected all objects by material: {}".format(active_material_name))
         else:
             self.report(
-                {'INFO'}, "No objects found with the selected material.")           
+                {'ERROR'}, "No objects found with the selected material.")           
         return {'FINISHED'}
     
 class OBJECT_OT_pizza_tool_assign_material(bpy.types.Operator):
