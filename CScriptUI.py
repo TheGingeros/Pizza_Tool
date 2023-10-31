@@ -218,7 +218,19 @@ class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
             "object.pizza_tool_clean_up_slots_scene", text="Clean Up Scene", icon='TRASH'
         )
 
+class OBJECT_PT_MaterialTool_List_UI(bpy.types.Panel):
+    """Creates a Panel in the Object properties window"""
+    bl_label = "UIList Example 1 Panel"
+    bl_space_type = "VIEW_3D"
+    bl_region_type = "UI"
+    bl_category = "Pizza Tool"
 
+    def draw(self, context):
+        layout = self.layout
+
+        obj = context.object
+
+        layout.template_list("MATERIAL_UL_matslots_example", "", obj, "material_slots", obj, "active_material_index")
 
 
 
