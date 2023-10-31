@@ -207,7 +207,13 @@ class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
         else:
             box = layout.box()
             cleanUp_button = box.operator(
-                "object.pizza_tool_clean_up_slots", text="Clean Up Unused Slots", icon='TRASH'
+                "object.pizza_tool_clean_up_slots", text="Clean Up Slots of Selected Objects", icon='TRASH'
+            )
+
+            row = layout.row()
+            box = layout.box()
+            cleanup_scenematerials_button = box.operator(
+                "object.pizza_tool_clean_up_slots_scene", text="Clean Up Slots in Scene", icon='TRASH'
             )
 
 
