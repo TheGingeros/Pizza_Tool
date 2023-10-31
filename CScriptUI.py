@@ -205,7 +205,7 @@ class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
         row.label(text="Clean Up Slots of Selected Objects:")
         row = layout.row()
         cleanUp_button = row.operator(
-            "object.pizza_tool_clean_up_slots", text="Clean Up", icon='TRASH'
+            "object.pizza_tool_clean_up_slots", text="Clean Up Objects", icon='TRASH'
         )
 
         #UI for the second button
@@ -214,7 +214,7 @@ class OBJECT_PT_UtilityTool_CleanUp_UI(bpy.types.Panel):
         row.label(text="Clean Up Slots in Scene:")
         row = layout.row()
         cleanup_scenematerials_button = row.operator(
-            "object.pizza_tool_clean_up_slots_scene", text="Clean Up", icon='TRASH'
+            "object.pizza_tool_clean_up_slots_scene", text="Clean Up Scene", icon='TRASH'
         )
 
 
