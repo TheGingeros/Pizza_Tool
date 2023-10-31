@@ -1,6 +1,7 @@
 import bpy
 from .COperators import *
 from .CProps import *
+from .list import *
 
 class OBJECT_PT_ObjectTool_UI(bpy.types.Panel):
     bl_idname = "OBJECT_PT_ObjectTool_UI"
